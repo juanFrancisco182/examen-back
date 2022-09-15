@@ -12,7 +12,7 @@ class Usuarios_model extends CI_Model {
     //========================================================
     function get_usuarios(){
         
-      $this->db->select('U.id, U.email, U.first_name, U.last_name,U.avatar');
+      $this->db->select('U.id, U.email, U.first_name, U.last_name,U.avatar,U.job');
       $this->db->from('usuarios U');
       $query = $this->db->get();
       if($query->num_rows() > 0 ){

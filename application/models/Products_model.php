@@ -11,7 +11,6 @@ class Products_model extends CI_Model {
     // 	OBTENER Productos
     //========================================================
     function get_products(){
-        
       $this->db->select('P.id_producto, P.nombre_producto, P.descripcion_producto, P.precio_producto,P.fecha_registro_producto,P.fecha_actualizacion_producto');
       $this->db->from('products P');
       $query = $this->db->get();
@@ -30,6 +29,28 @@ class Products_model extends CI_Model {
       return $result;
     }
 
+     //========================================================
+    // 	OBTENER Producto por id
+    //========================================================
+    function get_productById($id){
+        $this->db->select('P.nombre_producto');
+        $this->db->where('id_producto', $id );
+        $this->db->from('products P');
+        $query = $this->db->get();
+        if($query->num_rows() > 0 ){
+            $result  = $query->row();
+
+        }else{
+            $result = array(
+                'success' => FALSE,
+                'msg' => 'No hay datos'
+            );
+        }
+        return $result;
+      }
+  
+     
+  
    
 
 

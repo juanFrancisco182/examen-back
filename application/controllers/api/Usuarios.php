@@ -71,6 +71,7 @@ CONST APIURL = 'https://reqres.in/api';
         'email' => $params['email'],
         'first_name' => $params['name'],
         'last_name' => $params['last_name'],
+        'job' => $params['job'],
         'id' => $apiResult->id,
       );
       $inserted =  $this->functions->create_record('usuarios',$data); //inserta un nuevo registro
@@ -102,6 +103,7 @@ CONST APIURL = 'https://reqres.in/api';
       $data = array(
         'email' => $params['email'],
         'first_name' => $params['name'],
+        'job' => $params['job'],
         'last_name' => $params['last_name'],
       );
       $updated = $this->functions->update_record( 'usuarios' , $data , $id ,'id');

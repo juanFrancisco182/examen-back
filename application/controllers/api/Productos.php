@@ -56,10 +56,13 @@ class Productos extends REST_Controller {
     if( !$this->functions->exist_row('products',$id,'id_producto')){ // verifica si el existe un producto con el id recibido  
       $this->response($this->functions->format_response(FALSE,' El producto con ID '.$id.' no existe'), REST_Controller::HTTP_BAD_REQUEST); 
     }
-
-    if( $this->functions->exist_row('products',$params['nombre_producto'],'nombre_producto')){ // verifica si el nombre del producto ya existe en la base de datos
-      $this->response($this->functions->format_response(FALSE,'Ya existe un producto con el nombre '.$params['nombre_producto'].''), REST_Controller::HTTP_BAD_REQUEST); 
+    $data = $this->Products_model->get_productById($id);
+    if($data->nombre_producto !=$params['nombre_producto']){
+      if( $this->functions->exist_row('products',$params['nombre_producto'],'nombre_producto')){ // verifica si el nombre del producto ya existe en la base de datos
+        $this->response($this->functions->format_response(FALSE,'Ya existe un producto con el nombre '.$params['nombre_producto'].''), REST_Controller::HTTP_BAD_REQUEST); 
+      }
     }
+   
 
     if( $validation['err'] ) { $this->response( $validation , REST_Controller::HTTP_BAD_REQUEST ); }
 
